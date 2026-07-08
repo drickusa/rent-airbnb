@@ -130,10 +130,16 @@ rentals.json     ──▶  bronze.rentals      ──▶  silver.rentals    ─
 
 ---
 
-## Some Future Enhancements 
+## Future Enhancements
 
 * Implement **SCD Type 1** or **Type 2** for tracking historical changes and to have a backfill operation for improve source data
 * Switch from overwrite to **incremental merge** patterns
 * Implement **data lineage tracking** with metadata catalogs
 * Add **automated testing** for transformation logic
 * Deploy to production using **Declarative Automation Bundles (DABs)** and **Workflow Jobs** for enterprise-grade orchestration, version control, and CI/CD integration
+
+---
+
+## Known Limitations
+
+* **Parquet export not functional on Databricks Community Edition** — Export to Parquet format (notebook `9999_ExportData`) encounters permission errors due to DBFS root restrictions in the free tier. Code is available for reference but requires a paid Databricks workspace with Unity Catalog Volumes for execution.

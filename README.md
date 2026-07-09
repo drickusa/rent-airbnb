@@ -1,6 +1,8 @@
-# Rent-Airbnb Data Pipeline
+# Rent-Airbnb Data Pipeline Overview
 
-A production-ready ETL pipeline implementing the **medallion architecture** (Bronze → Silver → Gold) to process and analyze rental property data from Airbnb and rental listing sources.
+The Rent-Airbnb pipeline solution was implemented to load and transform data from two sources, enabling better insights into the rental property and Airbnb markets. The goal is to support potential investors in identifying the most attractive properties to purchase.
+
+The solution follows the Medallion Architecture, and each section of the README explains the rationale behind the design decisions, as well as providing an overview of how the solution was implemented.
 
 ## Architecture Overview
 

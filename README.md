@@ -14,14 +14,12 @@ This pipeline implements a three-layer data lakehouse architecture in **Unity Ca
 
 **Notebook:** `001_bronze_ingest`
 
-**Purpose:** Capture raw data exactly as it arrives from source systems with minimal transformation. The bronze layer serves as the **immutable source of truth** and historical archive.
+**Purpose:** Capture raw data exactly as it arrives from the two manual source files with minimal transformation. 
 
 **Why Bronze?**
 * **Data lineage** — Preserve original data for auditing and reprocessing
 * **Recovery** — Reprocess downstream layers without re-ingesting from external sources
 * **Schema evolution** — Store raw data before understanding all business rules
-* **Compliance** — Maintain unmodified records for regulatory requirements
-* **Debugging** — Trace data quality issues back to original source
 
 **Tables:**
 * `rentalproperty.bronze.airbnb` — Raw Airbnb listings (CSV)
@@ -70,10 +68,10 @@ This pipeline implements a three-layer data lakehouse architecture in **Unity Ca
 
 **Notebook:** `004_gold_load_revenue`
 
-**Purpose:** Create **highly aggregated, business-specific datasets** optimized for reporting, dashboards, and analytics. The gold layer answers specific business questions with pre-computed metrics.
+**Purpose:** Create **aggregated, business-specific datasets** optimized for reporting, dashboards, and analytics. In the Gold layer, only simple aggregations were performed. The investors can leverage this curated dataset to develop more advanced queries and conduct deeper analysis of the rental and Airbnb markets.
 
 **Why Gold?**
-* **Performance** — Pre-aggregated data for instant dashboard response
+* **Performance** — Pre-aggregated data for quicker analysis
 * **Simplicity** — Business users query simple tables, not complex joins
 * **Consistency** — Metrics calculated once, used everywhere (single version of truth)
 * **Cost optimization** — Avoid repeated expensive aggregations
@@ -134,9 +132,8 @@ rentals.json     ──▶  bronze.rentals      ──▶  silver.rentals    ─
 
 ## Future Enhancements
 
-* Implement **SCD Type 1** or **Type 2** for tracking historical changes and to have a backfill operation for improve source data
+* Implement **SCD Type 1** or **Type 2** for tracking historical changes and to have a backfill operation after receiving improved source data
 * Switch from overwrite to **incremental merge** patterns
-* Implement **data lineage tracking** with metadata catalogs
 * Add **automated testing** for transformation logic
 * Deploy to production using **Declarative Automation Bundles (DABs)** and **Workflow Jobs** for enterprise-grade orchestration, version control, and CI/CD integration
 
@@ -144,4 +141,4 @@ rentals.json     ──▶  bronze.rentals      ──▶  silver.rentals    ─
 
 ## Known Limitations
 
-* **Parquet export not functional on Databricks Community Edition** — Export to Parquet format (notebook `9999_ExportData`) encounters permission errors due to DBFS root restrictions in the free tier. Code is available for reference but requires a paid Databricks workspace with Unity Catalog Volumes for execution.
+* **Parquet export not functional on Databricks Free Edition** — Export to Parquet format (notebook `9999_ExportData`) encounters permission errors due to DBFS root restrictions in the free tier. Code is available for reference but requires a paid Databricks workspace with Unity Catalog Volumes for execution.

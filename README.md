@@ -135,7 +135,7 @@ rentals.json     ──▶  bronze.rentals      ──▶  silver.rentals    ─
 * Implement **SCD Type 1** or **Type 2** for tracking historical changes and to have a backfill operation after receiving improved source data
 * Switch from overwrite to **incremental merge** patterns
 * Add **automated testing** for transformation logic
-* Deploy to production using **Declarative Automation Bundles (DABs)** and **Workflow Jobs** for enterprise-grade orchestration, version control, and CI/CD integration
+* Deploy to production using **Declarative Automation Bundles (DABs)** and **Workflow Jobs** for enterprise-grade orchestration, version control, and CI/CD integration. It was decided to focus on setting up the medallation architecture and data quality improvements in the silver layer instead of setting up the DAB and workflow job in the timeframe for the project.
 
 ---
 
